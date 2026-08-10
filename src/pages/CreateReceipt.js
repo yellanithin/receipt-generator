@@ -133,11 +133,21 @@ function CreateReceipt() {
 
                                 <input
                                     type="number"
-                                    min="0"
+                                    min=""
                                     value={product.price}
                                     onChange={(e) =>
                                         updateProduct(index, "price", Number(e.target.value))
                                     }
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Total</label>
+
+                                <input
+                                    type="text"
+                                    value={`₹${(product.quantity * product.price).toFixed(2)}`}
+                                    readOnly
                                 />
                             </div>
 
