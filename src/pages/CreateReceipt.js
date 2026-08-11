@@ -5,6 +5,8 @@ function CreateReceipt() {
 
     const [discount, setDiscount] = useState(0);
 
+    const [tax, setTax] = useState(0);
+
     //add a new product
     const addProduct = () => {
         const newProduct = {
@@ -43,6 +45,10 @@ function CreateReceipt() {
     const discountAmount = (subtotal * discount) / 100;
 
     const totalAfterDiscount = subtotal - discountAmount;
+
+    const taxAmount = (totalAfterDiscount * tax) / 100;
+
+    const finalTotal = totalAfterDiscount + taxAmount;
 
     return (
         <div className="page-content">
@@ -210,11 +216,33 @@ function CreateReceipt() {
                         </strong>
                     </div>
 
-                    <div className="summary-row final-row">
-                        <span>Total</span>
+                    <div className="summary-row discount-row">
+
+                        <label>Tax (%)</label>
+
+                        <input
+                            type="number"
+                            min="0"
+                            max="100"
+                            value={tax}
+                            onChange={(e) => setTax(Number(e.target.value))}
+                        />
+
+                    </div>
+
+                    <div className="summary-row">
+                        <span>Tax Amount</span>
 
                         <strong>
-                            ₹{totalAfterDiscount.toFixed(2)}
+                            +₹{taxAmount.toFixed(2)}
+                        </strong>
+                    </div>
+
+                    <div className="summary-row final-row">
+                        <span>Final Total</span>
+
+                        <strong>
+                            ₹{finalTotal.toFixed(2)}
                         </strong>
                     </div>
 
