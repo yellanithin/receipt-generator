@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import ReceiptPreview from "../components/ReceiptPreview";
+
 function CreateReceipt() {
     const [products, setProducts] = useState([]);
 
@@ -249,6 +251,8 @@ function CreateReceipt() {
                 </div>
 
             </div>
+
+            <ReceiptPreview />
 
         </div>
     );

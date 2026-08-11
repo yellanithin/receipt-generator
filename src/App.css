@@ -1430,3 +1430,251 @@ button {
 
     color: #2563eb;
 }
+
+/* =========================================================
+   RECEIPT PREVIEW
+========================================================= */
+
+.receipt-preview {
+    width: 100%;
+    max-width: 750px;
+
+    margin: 35px auto;
+
+    padding: 35px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px rgba(25, 42, 70, 0.08);
+
+    color: #172033;
+
+    box-sizing: border-box;
+}
+
+/* =========================
+   RECEIPT HEADER
+========================= */
+
+.receipt-header {
+    text-align: center;
+
+    padding-bottom: 25px;
+
+    border-bottom: 2px solid #172033;
+}
+
+.receipt-header h1 {
+    margin: 0 0 8px;
+
+    font-size: 26px;
+
+    font-weight: 700;
+}
+
+.receipt-header p {
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 14px;
+}
+
+/* =========================
+   RECEIPT INFORMATION
+========================= */
+
+.receipt-info {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-top: 25px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.receipt-info p {
+    margin: 0;
+
+    font-size: 14px;
+}
+
+/* =========================
+   CUSTOMER
+========================= */
+
+.customer-info {
+    margin-top: 25px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.customer-info h3 {
+    margin: 0 0 10px;
+
+    font-size: 16px;
+}
+
+.customer-info p {
+    margin: 4px 0;
+
+    color: #475467;
+
+    font-size: 14px;
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.receipt-items {
+    margin-top: 25px;
+}
+
+.receipt-item {
+    display: grid;
+
+    grid-template-columns:
+        2fr
+        0.7fr
+        1fr
+        1fr;
+
+    gap: 15px;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #eef0f4;
+
+    font-size: 14px;
+}
+
+.receipt-item.header {
+    font-weight: 600;
+
+    color: #667085;
+
+    background: #f8f9fc;
+
+    padding: 12px;
+
+    border-radius: 6px;
+}
+
+/* =========================
+   SUMMARY
+========================= */
+
+.receipt-summary {
+    margin-top: 25px;
+
+    margin-left: auto;
+
+    width: 100%;
+
+    max-width: 350px;
+}
+
+.receipt-summary > div {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 9px 0;
+
+    font-size: 14px;
+}
+
+.receipt-total {
+    margin-top: 10px;
+
+    padding-top: 15px !important;
+
+    border-top: 2px solid #172033;
+
+    font-size: 20px !important;
+}
+
+.receipt-total strong {
+    font-size: 22px;
+
+    color: #2563eb;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.receipt-footer {
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 1px dashed #d0d5dd;
+
+    text-align: center;
+}
+
+.receipt-footer p {
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    .receipt-preview {
+        padding: 20px;
+
+        margin: 20px 0;
+    }
+
+    .receipt-header h1 {
+        font-size: 22px;
+    }
+
+    .receipt-info {
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .receipt-item {
+        grid-template-columns:
+            1.5fr
+            0.6fr
+            1fr
+            1fr;
+
+        gap: 8px;
+
+        font-size: 12px;
+    }
+
+    .receipt-summary {
+        max-width: 100%;
+    }
+
+}
