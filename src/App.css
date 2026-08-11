@@ -1385,3 +1385,48 @@ button {
 
     color: #172033;
 }
+
+/* =========================================================
+   DISCOUNT SECTION
+========================================================= */
+
+.discount-row {
+    gap: 20px;
+}
+
+.discount-row input {
+    width: 100px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+.discount-row input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.final-row {
+    margin-top: 10px;
+
+    padding-top: 20px;
+
+    border-top: 2px solid #e8ebf2;
+
+    font-size: 20px;
+}
+
+.final-row strong {
+    font-size: 24px;
+
+    color: #2563eb;
+}

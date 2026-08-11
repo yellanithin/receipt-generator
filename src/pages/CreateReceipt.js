@@ -3,6 +3,8 @@ import { useState } from "react";
 function CreateReceipt() {
     const [products, setProducts] = useState([]);
 
+    const [discount, setDiscount] = useState(0);
+
     //add a new product
     const addProduct = () => {
         const newProduct = {
@@ -37,6 +39,10 @@ function CreateReceipt() {
     const subtotal = products.reduce((total, product) => {
         return total + product.quantity * product.price;
     }, 0);
+
+    const discountAmount = (subtotal * discount) / 100;
+
+    const totalAfterDiscount = subtotal - discountAmount;
 
     return (
         <div className="page-content">
@@ -179,6 +185,36 @@ function CreateReceipt() {
 
                         <strong>
                             ₹{subtotal.toFixed(2)}
+                        </strong>
+                    </div>
+
+                    <div className="summary-row discount-row">
+
+                        <label>Discount (%)</label>
+
+                        <input
+                            type="number"
+                            min="0"
+                            max="100"
+                            value={discount}
+                            onChange={(e) => setDiscount(Number(e.target.value))}
+                        />
+
+                    </div>
+
+                    <div className="summary-row">
+                        <span>Discount Amount</span>
+
+                        <strong>
+                            -₹{discountAmount.toFixed(2)}
+                        </strong>
+                    </div>
+
+                    <div className="summary-row final-row">
+                        <span>Total</span>
+
+                        <strong>
+                            ₹{totalAfterDiscount.toFixed(2)}
                         </strong>
                     </div>
 
