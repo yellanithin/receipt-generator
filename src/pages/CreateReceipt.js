@@ -11,6 +11,8 @@ function CreateReceipt() {
 
     const [customerName, setCustomerName] = useState("");
     const [phone, setPhone] = useState("");
+    const [receiptNumber, setReceiptNumber] = useState("RCPT001");
+    const [receiptDate, setReceiptDate] = useState("");
 
     //add a new product
     const addProduct = () => {
@@ -75,8 +77,8 @@ function CreateReceipt() {
                         <label>Receipt Number</label>
                         <input
                             type="text"
-                            value="RCPT001"
-                            readOnly
+                            value={receiptNumber}
+                            onChange={(e) => setReceiptNumber(e.target.value)}
                         />
                     </div>
 
@@ -84,6 +86,8 @@ function CreateReceipt() {
                         <label>Receipt Date</label>
                         <input
                             type="date"
+                            value={receiptDate}
+                            onChange={(e) => setReceiptDate(e.target.value)}
                         />
                     </div>
 
@@ -262,6 +266,8 @@ function CreateReceipt() {
             <ReceiptPreview
                 customerName={customerName}
                 phone={phone}
+                receiptNumber={receiptNumber}
+                receiptDate={receiptDate}
                 products={products}
                 subtotal={subtotal}
                 discountAmount={discountAmount}

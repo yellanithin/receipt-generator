@@ -1,6 +1,8 @@
 function ReceiptPreview({
     customerName,
     phone,
+    receiptNumber,
+    receiptDate,
     products,
     subtotal,
     discountAmount,
@@ -21,11 +23,11 @@ function ReceiptPreview({
             <div className="receipt-info">
 
                 <p>
-                    <strong>Receipt No:</strong> RCPT001
+                    <strong>Receipt No:</strong> {receiptNumber}
                 </p>
 
                 <p>
-                    <strong>Date:</strong> 11-08-2026
+                    <strong>Date:</strong> {receiptDate || "Select Date"}
                 </p>
 
             </div>
