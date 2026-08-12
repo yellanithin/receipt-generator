@@ -13,6 +13,7 @@ function CreateReceipt() {
     const [phone, setPhone] = useState("");
     const [receiptNumber, setReceiptNumber] = useState("RCPT001");
     const [receiptDate, setReceiptDate] = useState("");
+    const [paymentStatus, setPaymentStatus] = useState("Paid");
 
     //add a new product
     const addProduct = () => {
@@ -115,6 +116,19 @@ function CreateReceipt() {
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                         />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Payment Status</label>
+
+                        <select
+                            value={paymentStatus}
+                            onChange={(e) => setPaymentStatus(e.target.value)}
+                        >
+                            <option value="Paid">Paid</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
                     </div>
 
                 </div>
@@ -268,6 +282,7 @@ function CreateReceipt() {
                 phone={phone}
                 receiptNumber={receiptNumber}
                 receiptDate={receiptDate}
+                paymentStatus={paymentStatus}
                 products={products}
                 subtotal={subtotal}
                 discountAmount={discountAmount}

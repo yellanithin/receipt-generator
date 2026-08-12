@@ -3,6 +3,7 @@ function ReceiptPreview({
     phone,
     receiptNumber,
     receiptDate,
+    paymentStatus,
     products,
     subtotal,
     discountAmount,
@@ -103,6 +104,11 @@ function ReceiptPreview({
 
             <div className="receipt-footer">
 
+                <div className="payment-status">
+                    <span>Payment Status:</span>
+
+                    <strong>{paymentStatus}</strong>
+                </div>
                 <p>Thank You!</p>
 
             </div>
