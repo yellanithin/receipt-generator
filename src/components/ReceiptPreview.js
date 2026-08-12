@@ -1,4 +1,11 @@
-function ReceiptPreview() {
+function ReceiptPreview({
+    customerName,
+    phone,
+    products,
+    subtotal,
+    discountAmount,
+    taxAmount,
+    finalTotal }) {
 
     return (
         <div className="receipt-preview">
@@ -27,9 +34,9 @@ function ReceiptPreview() {
 
                 <h3>Customer</h3>
 
-                <p>Nitin Kumar</p>
+                <p>{customerName || "Customer Name"}</p>
 
-                <p>9876543210</p>
+                <p>{phone || "Phone Number"}</p>
 
             </div>
 
@@ -44,23 +51,27 @@ function ReceiptPreview() {
 
                 </div>
 
-                <div className="receipt-item">
+                {products.map((product, index) => (
+                    <div className="receipt-item" key={index}>
 
-                    <span>Keyboard</span>
-                    <span>2</span>
-                    <span>₹500</span>
-                    <span>₹1000</span>
+                        <span>
+                            {product.name || "Product"}
+                        </span>
 
-                </div>
+                        <span>
+                            {product.quantity}
+                        </span>
 
-                <div className="receipt-item">
+                        <span>
+                            ₹{product.price.toFixed(2)}
+                        </span>
 
-                    <span>Mouse</span>
-                    <span>1</span>
-                    <span>₹800</span>
-                    <span>₹800</span>
+                        <span>
+                            ₹{(product.quantity * product.price).toFixed(2)}
+                        </span>
 
-                </div>
+                    </div>
+                ))}
 
             </div>
 
@@ -68,22 +79,22 @@ function ReceiptPreview() {
 
                 <div>
                     <span>Subtotal</span>
-                    <strong>₹1800.00</strong>
+                    <strong>₹{subtotal.toFixed(2)}</strong>
                 </div>
 
                 <div>
                     <span>Discount</span>
-                    <strong>-₹180.00</strong>
+                    <strong>-₹{discountAmount.toFixed(2)}</strong>
                 </div>
 
                 <div>
                     <span>Tax</span>
-                    <strong>+₹81.00</strong>
+                    <strong>+₹{taxAmount.toFixed(2)}</strong>
                 </div>
 
                 <div className="receipt-total">
                     <span>TOTAL</span>
-                    <strong>₹1701.00</strong>
+                    <strong>₹{finalTotal.toFixed(2)}</strong>
                 </div>
 
             </div>

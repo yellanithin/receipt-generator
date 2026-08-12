@@ -9,6 +9,9 @@ function CreateReceipt() {
 
     const [tax, setTax] = useState(0);
 
+    const [customerName, setCustomerName] = useState("");
+    const [phone, setPhone] = useState("");
+
     //add a new product
     const addProduct = () => {
         const newProduct = {
@@ -95,6 +98,8 @@ function CreateReceipt() {
                         <input
                             type="text"
                             placeholder="Enter customer name"
+                            value={customerName}
+                            onChange={(e) => setCustomerName(e.target.value)}
                         />
                     </div>
 
@@ -103,6 +108,8 @@ function CreateReceipt() {
                         <input
                             type="tel"
                             placeholder="Enter phone number"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
                         />
                     </div>
 
@@ -252,7 +259,15 @@ function CreateReceipt() {
 
             </div>
 
-            <ReceiptPreview />
+            <ReceiptPreview
+                customerName={customerName}
+                phone={phone}
+                products={products}
+                subtotal={subtotal}
+                discountAmount={discountAmount}
+                taxAmount={taxAmount}
+                finalTotal={finalTotal}
+            />
 
         </div>
     );
