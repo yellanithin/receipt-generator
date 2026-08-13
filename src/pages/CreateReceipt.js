@@ -109,6 +109,10 @@ function CreateReceipt() {
         alert("Receipt saved successfully!");
     };
 
+    const printReceipt = () => {
+        window.print();
+    };
+
     return (
         <div className="page-content">
 
@@ -254,21 +258,33 @@ function CreateReceipt() {
 
                 </div>
 
-                <button
-                    type="button"
-                    className="primary-button"
-                    onClick={addProduct}
-                >
-                    + Add Product
-                </button>
+                <div className="receipt-actions">
 
-                <button
-                    type="button"
-                    className="primary-button"
-                    onClick={saveReceipt}
-                >
-                    Save Receipt
-                </button>
+                    <button
+                        type="button"
+                        className="primary-button"
+                        onClick={addProduct}
+                    >
+                        + Add Product
+                    </button>
+
+                    <button
+                        type="button"
+                        className="primary-button"
+                        onClick={saveReceipt}
+                    >
+                        Save Receipt
+                    </button>
+
+                    <button
+                        type="button"
+                        className="print-button"
+                        onClick={printReceipt}
+                    >
+                        🖨️ Print Receipt
+                    </button>
+
+                </div>
 
                 <div className="receipt-summary">
 

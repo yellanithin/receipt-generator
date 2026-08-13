@@ -1678,3 +1678,133 @@ button {
     }
 
 }
+
+@media print {
+
+    body * {
+        visibility: hidden;
+    }
+
+    #receipt-preview,
+    #receipt-preview * {
+        visibility: visible;
+    }
+
+    #receipt-preview {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        box-shadow: none;
+        border: none;
+    }
+
+}
+
+/* ================================
+   PRINT RECEIPT BUTTON
+================================ */
+
+.receipt-actions .print-button {
+    border: 1px solid #d0d5dd !important;
+    border-radius: 9px !important;
+
+    background: white !important;
+    color: #344054 !important;
+
+    cursor: pointer !important;
+
+    transition: 0.2s ease !important;
+}
+
+.receipt-actions .print-button:hover {
+    background: #f2f4f7 !important;
+    border-color: #98a2b3 !important;
+}
+
+/* ================================
+   RECEIPT ACTION BUTTONS
+================================ */
+
+.receipt-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin-top: 20px !important;
+
+    box-sizing: border-box !important;
+}
+
+.receipt-actions button {
+    flex: 1 1 0 !important;
+
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+    padding: 13px 8px !important;
+
+    box-sizing: border-box !important;
+
+    font-size: 15px !important;
+    font-weight: 600 !important;
+
+    white-space: normal !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+
+.receipt-actions .primary-button,
+.receipt-actions .print-button {
+    margin: 0;
+    width: auto;
+    white-space: nowrap;
+}
+@media (max-width: 600px) {
+
+    .receipt-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .receipt-actions .primary-button,
+    .receipt-actions .print-button {
+        width: 100%;
+        margin: 0;
+    }
+
+}
+@media (max-width: 600px) {
+
+    .receipt-actions {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .receipt-actions button {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .receipt-actions {
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .receipt-actions button {
+        width: 100% !important;
+        flex: none !important;
+    }
+
+}

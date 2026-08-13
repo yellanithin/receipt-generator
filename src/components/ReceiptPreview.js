@@ -11,13 +11,13 @@ function ReceiptPreview({
     finalTotal }) {
 
     return (
-        <div className="receipt-preview">
+        <div id="receipt-preview" className="receipt-preview">
 
             <div className="receipt-header">
 
-                <h1>ABC COMPUTERS</h1>
+                <h1>YNK</h1>
 
-                <p>Computer Accessories</p>
+                <p>Accessories</p>
 
             </div>
 
