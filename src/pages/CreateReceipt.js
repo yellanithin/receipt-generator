@@ -58,6 +58,57 @@ function CreateReceipt() {
 
     const finalTotal = totalAfterDiscount + taxAmount;
 
+    const validateReceipt = () => {
+        if (!customerName.trim()) {
+            alert("Please enter customer name.");
+            return false;
+        }
+
+        if (!phone.trim()) {
+            alert("Please enter phone number.");
+            return false;
+        }
+
+        if (!receiptDate) {
+            alert("Please select receipt date.");
+            return false;
+        }
+
+        if (products.length === 0) {
+            alert("Please add at least one product.");
+            return false;
+        }
+
+        for (const product of products) {
+            if (!product.name.trim()) {
+                alert("Please enter product name.");
+                return false;
+            }
+
+            if (product.quantity <= 0) {
+                alert("Quantity must be greater than 0.");
+                return false;
+            }
+
+            if (product.price < 0) {
+                alert("Price cannot be negative.");
+                return false;
+            }
+        }
+
+        return true;
+    };
+
+    const saveReceipt = () => {
+        const isValid = validateReceipt();
+
+        if (!isValid) {
+            return;
+        }
+
+        alert("Receipt saved successfully!");
+    };
+
     return (
         <div className="page-content">
 
@@ -209,6 +260,14 @@ function CreateReceipt() {
                     onClick={addProduct}
                 >
                     + Add Product
+                </button>
+
+                <button
+                    type="button"
+                    className="primary-button"
+                    onClick={saveReceipt}
+                >
+                    Save Receipt
                 </button>
 
                 <div className="receipt-summary">
