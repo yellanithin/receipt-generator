@@ -1822,61 +1822,96 @@ button {
 ================================= */
 
 .receipt-filters {
-  display: flex;
-  align-items: flex-end;
-  gap: 20px;
+    display: grid;
 
-  margin-bottom: 25px;
+    grid-template-columns: minmax(0, 1fr) 200px 200px;
 
-  padding: 20px;
+    gap: 20px;
 
-  background: #ffffff;
+    width: 100%;
+    max-width: 100%;
 
-  border: 1px solid #e8ebf2;
-  border-radius: 14px;
+    margin-bottom: 25px;
 
-  box-shadow: 0 5px 18px rgba(25, 42, 70, 0.05);
+    padding: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e8ebf2;
+    border-radius: 14px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 5px 18px rgba(25, 42, 70, 0.05);
 }
+
+
+/* Filter group */
 
 .filter-group {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    min-width: 0;
 }
+
+
+/* Labels */
 
 .filter-group label {
-  font-size: 14px;
-  font-weight: 600;
-  color: #344054;
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #344054;
 }
+
+
+/* Inputs */
 
 .filter-group input {
-  width: 180px;
+    width: 100%;
 
-  padding: 11px 13px;
+    min-width: 0;
+    max-width: 100%;
 
-  border: 1px solid #d0d5dd;
-  border-radius: 8px;
+    padding: 11px 13px;
 
-  font-size: 14px;
+    border: 1px solid #d0d5dd;
 
-  box-sizing: border-box;
+    border-radius: 8px;
 
-  outline: none;
+    font-size: 14px;
+
+    box-sizing: border-box;
+
+    outline: none;
 }
+
+
+/* Focus */
 
 .filter-group input:focus {
-  border-color: #2563eb;
+    border-color: #2563eb;
 
-  box-shadow:
-    0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-@media (max-width: 600px) {
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 700px) {
 
     .receipt-filters {
-        flex-direction: column;
-        align-items: stretch;
+        grid-template-columns: 1fr;
+
         gap: 15px;
     }
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 function Receipts() {
 
+    const [searchTerm, setSearchTerm] = useState("");
     const [fromDate, setFromDate] = useState("");
     const [toDate, setToDate] = useState("");
     const receipts = [
@@ -35,16 +36,24 @@ function Receipts() {
     ];
     const filteredReceipts = receipts.filter((receipt) => {
 
-    if (fromDate && receipt.date < fromDate) {
-        return false;
-    }
+        const search = searchTerm.toLowerCase();
 
-    if (toDate && receipt.date > toDate) {
-        return false;
-    }
+        const matchesSearch =
+            receipt.receiptNumber.toLowerCase().includes(search) ||
+            receipt.customer.toLowerCase().includes(search);
 
-    return true;
-});
+        const matchesFromDate =
+            !fromDate || receipt.date >= fromDate;
+
+        const matchesToDate =
+            !toDate || receipt.date <= toDate;
+
+        return (
+            matchesSearch &&
+            matchesFromDate &&
+            matchesToDate
+        );
+    });
     return (
         <div className="page-content">
 
@@ -63,6 +72,17 @@ function Receipts() {
 
             <div className="receipt-filters">
 
+                <div className="filter-group search-group">
+                    <label>Search</label>
+
+                    <input
+                        type="text"
+                        placeholder="Search customer or receipt number..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+                
                 <div className="filter-group">
                     <label>From Date</label>
 
