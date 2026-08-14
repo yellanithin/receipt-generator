@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Customers from "./pages/Customers";
 import Products from "./pages/Products";
 import CreateReceipt from "./pages/CreateReceipt";
+import Receipts from "./pages/Receipts";
 
 import "./App.css";
 
@@ -51,6 +52,11 @@ function App() {
               <Route
                 path="/create-receipt"
                 element={<CreateReceipt />}
+              />
+
+              <Route
+                path="/receipts"
+                element={<Receipts />}
               />
 
             </Routes>
