@@ -6,27 +6,27 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
 
     <aside className={`sidebar ${sidebarOpen ? "expanded" : "collapsed"}`}>
 
-       {/* Toggle */}
-  <div className="sidebar-toggle-container">
-    <button
-      className="sidebar-toggle"
-      onClick={() => setSidebarOpen(!sidebarOpen)}
-    >
-      ☰
-    </button>
-  </div>
+      {/* Toggle */}
+      <div className="sidebar-toggle-container">
+        <button
+          className="sidebar-toggle"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          ☰
+        </button>
+      </div>
 
-  {/* Logo */}
-  <div className="sidebar-brand">
-    <span className="brand-icon">🧾</span>
+      {/* Logo */}
+      <div className="sidebar-brand">
+        <span className="brand-icon">🧾</span>
 
-    {sidebarOpen && (
-      <span className="brand-text">
-        Receipt 
-        Generator
-      </span>
-    )}
-  </div>
+        {sidebarOpen && (
+          <span className="brand-text">
+            Receipt
+            Generator
+          </span>
+        )}
+      </div>
 
 
       <nav className="sidebar-nav">

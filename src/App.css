@@ -1824,15 +1824,14 @@ button {
 .receipt-filters {
     display: grid;
 
-    grid-template-columns: minmax(0, 1fr) 180px 180px 130px;
+    grid-template-columns: minmax(0, 1fr) 150px 150px 110px;
 
-    gap: 20px;
+    gap: 12px;
 
     width: 100%;
     max-width: 100%;
 
     margin-bottom: 25px;
-
     padding: 20px;
 
     background: #ffffff;
@@ -1842,12 +1841,13 @@ button {
 
     box-sizing: border-box;
 
-    box-shadow:
-        0 5px 18px rgba(25, 42, 70, 0.05);
+    box-shadow: 0 5px 18px rgba(25, 42, 70, 0.05);
 }
 
 
-/* Filter group */
+/* =================================
+   FILTER GROUP
+================================= */
 
 .filter-group {
     display: flex;
@@ -1860,30 +1860,44 @@ button {
 }
 
 
-/* Labels */
+/* =================================
+   LABEL
+================================= */
 
 .filter-group label {
-    font-size: 14px;
+    display: block;
 
+    font-size: 14px;
     font-weight: 600;
 
     color: #344054;
+
+    white-space: nowrap;
 }
 
 
-/* Inputs */
+/* =================================
+   INPUT
+================================= */
 
 .filter-group input {
-    width: 100%;
+    display: block;
 
-    min-width: 0;
-    max-width: 100%;
+    width: 100% !important;
 
-    padding: 11px 13px;
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    height: 42px;
+
+    padding: 0 12px;
 
     border: 1px solid #d0d5dd;
-
     border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #344054;
 
     font-size: 14px;
 
@@ -1891,9 +1905,6 @@ button {
 
     outline: none;
 }
-
-
-/* Focus */
 
 .filter-group input:focus {
     border-color: #2563eb;
@@ -1904,48 +1915,92 @@ button {
 
 
 /* =================================
-   MOBILE
+   CLEAR FILTER BUTTON
 ================================= */
 
-@media (max-width: 700px) {
-
-    .receipt-filters {
-        grid-template-columns: 1fr;
-
-        gap: 15px;
-    }
-
-    .filter-group input {
-        width: 100%;
-    }
-
-    .clear-filter-button {
-    width: 100%;
-}
-
-}
 .clear-filter-button {
     align-self: end;
 
+    width: 100% !important;
+    min-width: 0 !important;
+
     height: 42px;
 
-    padding: 0 15px;
+    padding: 0 8px;
 
     border: 1px solid #d0d5dd;
     border-radius: 8px;
 
-    background: white;
+    background: #ffffff;
+
     color: #344054;
 
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
 
+    white-space: nowrap;
+
     cursor: pointer;
+
+    box-sizing: border-box;
 
     transition: 0.2s ease;
 }
 
 .clear-filter-button:hover {
     background: #f2f4f7;
+
     border-color: #98a2b3;
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 900px) {
+
+    .receipt-filters {
+        grid-template-columns: minmax(0, 1fr) 150px;
+    }
+
+    .search-group {
+        grid-column: 1 / -1;
+    }
+
+    .clear-filter-button {
+        width: 150px !important;
+    }
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .receipt-filters {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+
+        padding: 16px;
+    }
+
+    .search-group {
+        grid-column: auto;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+
+    .filter-group input {
+        width: 100% !important;
+    }
+
+    .clear-filter-button {
+        width: 100% !important;
+    }
 }
