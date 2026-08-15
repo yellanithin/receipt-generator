@@ -4,6 +4,11 @@ function Receipts() {
     const [searchTerm, setSearchTerm] = useState("");
     const [fromDate, setFromDate] = useState("");
     const [toDate, setToDate] = useState("");
+    const clearFilters = () => {
+        setSearchTerm("");
+        setFromDate("");
+        setToDate("");
+    };
     const receipts = [
         {
             receiptNumber: "RCPT001",
@@ -82,7 +87,7 @@ function Receipts() {
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
                 </div>
-                
+
                 <div className="filter-group">
                     <label>From Date</label>
 
@@ -102,6 +107,14 @@ function Receipts() {
                         onChange={(e) => setToDate(e.target.value)}
                     />
                 </div>
+
+                <button
+                    type="button"
+                    className="clear-filter-button"
+                    onClick={clearFilters}
+                >
+                    Clear Filters
+                </button>
 
             </div>
 

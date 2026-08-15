@@ -1824,7 +1824,7 @@ button {
 .receipt-filters {
     display: grid;
 
-    grid-template-columns: minmax(0, 1fr) 200px 200px;
+    grid-template-columns: minmax(0, 1fr) 180px 180px 130px;
 
     gap: 20px;
 
@@ -1919,4 +1919,33 @@ button {
         width: 100%;
     }
 
+    .clear-filter-button {
+    width: 100%;
+}
+
+}
+.clear-filter-button {
+    align-self: end;
+
+    height: 42px;
+
+    padding: 0 15px;
+
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+
+    background: white;
+    color: #344054;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.clear-filter-button:hover {
+    background: #f2f4f7;
+    border-color: #98a2b3;
 }
