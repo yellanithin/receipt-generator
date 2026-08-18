@@ -360,11 +360,9 @@ button {
     padding: 110px 45px 50px;
 
     background:
-        radial-gradient(
-            circle at top right,
+        radial-gradient(circle at top right,
             #e8efff 0%,
-            transparent 30%
-        ),
+            transparent 30%),
         #f5f7fb;
 }
 
@@ -411,11 +409,9 @@ button {
     padding: 110px 45px 50px;
 
     background:
-        radial-gradient(
-            circle at top right,
+        radial-gradient(circle at top right,
             #e8efff 0%,
-            transparent 30%
-        ),
+            transparent 30%),
         #f5f7fb;
 }
 
@@ -479,11 +475,9 @@ button {
     width: 100%;
     height: 4px;
 
-    background: linear-gradient(
-        90deg,
-        #2563eb,
-        #60a5fa
-    );
+    background: linear-gradient(90deg,
+            #2563eb,
+            #60a5fa);
 }
 
 .card:hover {
@@ -512,35 +506,27 @@ button {
 }
 
 .card:nth-child(1)::before {
-    background: linear-gradient(
-        90deg,
-        #2563eb,
-        #60a5fa
-    );
+    background: linear-gradient(90deg,
+            #2563eb,
+            #60a5fa);
 }
 
 .card:nth-child(2)::before {
-    background: linear-gradient(
-        90deg,
-        #16a34a,
-        #4ade80
-    );
+    background: linear-gradient(90deg,
+            #16a34a,
+            #4ade80);
 }
 
 .card:nth-child(3)::before {
-    background: linear-gradient(
-        90deg,
-        #f59e0b,
-        #fbbf24
-    );
+    background: linear-gradient(90deg,
+            #f59e0b,
+            #fbbf24);
 }
 
 .card:nth-child(4)::before {
-    background: linear-gradient(
-        90deg,
-        #7c3aed,
-        #a78bfa
-    );
+    background: linear-gradient(90deg,
+            #7c3aed,
+            #a78bfa);
 }
 
 
@@ -555,11 +541,9 @@ button {
 
     padding: 13px 20px;
 
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #1d4ed8
-    );
+    background: linear-gradient(135deg,
+            #2563eb,
+            #1d4ed8);
 
     color: white;
 
@@ -776,10 +760,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 2fr)
-        minmax(90px, 1fr)
-        minmax(110px, 1fr)
-        auto;
+        minmax(0, 2fr) minmax(90px, 1fr) minmax(110px, 1fr) auto;
 
     gap: 20px;
 
@@ -834,7 +815,7 @@ button {
     max-width: 350px;
 }
 
-.receipt-summary > div {
+.receipt-summary>div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1113,10 +1094,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1fr)
-        150px
-        150px
-        130px;
+        minmax(0, 1fr) 150px 150px 130px;
 
     gap: 12px;
 
@@ -1238,12 +1216,7 @@ button {
     */
 
     grid-template-columns:
-        1.2fr
-        1.5fr
-        1.2fr
-        1fr
-        1fr
-        80px;
+        1.2fr 1.5fr 1.2fr 1fr 1fr 80px;
 
     min-width: 750px;
 
@@ -1354,8 +1327,7 @@ button {
 
     .product-row {
         grid-template-columns:
-            minmax(0, 1fr)
-            minmax(100px, 1fr);
+            minmax(0, 1fr) minmax(100px, 1fr);
     }
 
     .remove-product {
@@ -1367,8 +1339,7 @@ button {
 
     .receipt-filters {
         grid-template-columns:
-            minmax(0, 1fr)
-            150px;
+            minmax(0, 1fr) 150px;
 
         gap: 15px;
     }
@@ -1505,10 +1476,7 @@ button {
 
     .receipt-item {
         grid-template-columns:
-            1.5fr
-            0.6fr
-            1fr
-            1fr;
+            1.5fr 0.6fr 1fr 1fr;
 
         gap: 8px;
 
@@ -1639,4 +1607,81 @@ button {
 
         box-shadow: none;
     }
+}
+
+/* =========================================================
+   RECEIPT ACTIONS
+========================================================= */
+
+.receipt-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    white-space: nowrap;
+}
+
+
+.receipt-actions button {
+    border: none;
+
+    background: transparent;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    padding: 6px 8px;
+
+    border-radius: 6px;
+
+    transition: 0.2s ease;
+}
+
+
+/* View */
+
+.view-receipt-button {
+    color: #2563eb;
+}
+
+.view-receipt-button:hover {
+    background: #eff6ff;
+}
+
+
+/* Edit */
+
+.edit-receipt-button {
+    color: #7c3aed;
+}
+
+.edit-receipt-button:hover {
+    background: #f5f3ff;
+}
+
+
+/* Delete */
+
+.delete-receipt-button {
+    color: #dc2626;
+}
+
+.delete-receipt-button:hover {
+    background: #fef2f2;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .receipt-actions {
+        flex-wrap: wrap;
+    }
+
 }

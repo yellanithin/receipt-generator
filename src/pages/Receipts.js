@@ -145,6 +145,28 @@ function Receipts() {
             matchesToDate
         );
     });
+    const handleEdit = (receipt) => {
+        console.log("Editing receipt:", receipt);
+
+        alert(
+            `Edit Receipt ${receipt.receiptNumber}\n\n` +
+            `Customer: ${receipt.customer}\n` +
+            `Amount: ₹${receipt.amount}`
+        );
+    };
+
+    const handleDelete = (receiptNumber) => {
+
+        const confirmDelete = window.confirm(
+            `Are you sure you want to delete ${receiptNumber}?`
+        );
+
+        if (!confirmDelete) {
+            return;
+        }
+
+        console.log("Deleting:", receiptNumber);
+    };
 
     return (
         <div className="page-content">
@@ -267,20 +289,33 @@ function Receipts() {
                                 {receipt.status}
                             </span>
 
-                            <span>
+                            <div className="receipt-actions">
 
                                 <button
                                     type="button"
                                     className="view-receipt-button"
-                                    onClick={() => {
-                                        console.log("View clicked:", receipt);
-                                        setSelectedReceipt(receipt);
-                                    }}
+                                    onClick={() => setSelectedReceipt(receipt)}
                                 >
                                     View
                                 </button>
 
-                            </span>
+                                <button
+                                    type="button"
+                                    className="edit-receipt-button"
+                                    onClick={() => handleEdit(receipt)}
+                                >
+                                    Edit
+                                </button>
+
+                                <button
+                                    type="button"
+                                    className="delete-receipt-button"
+                                    onClick={() => handleDelete(receipt.receiptNumber)}
+                                >
+                                    Delete
+                                </button>
+
+                            </div>
 
                         </div>
 
