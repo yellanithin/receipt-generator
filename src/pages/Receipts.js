@@ -19,7 +19,7 @@ function Receipts() {
     };
 
     // Temporary receipt data
-    const receipts = [
+    const [receipts, setReceipts] = useState([
         {
             receiptNumber: "RCPT001",
             customer: "Rahul Kumar",
@@ -122,7 +122,7 @@ function Receipts() {
             taxAmount: 0,
             finalTotal: 1200
         }
-    ];
+    ]);
 
     // Filter receipts
     const filteredReceipts = receipts.filter((receipt) => {
@@ -165,9 +165,13 @@ function Receipts() {
             return;
         }
 
-        console.log("Deleting:", receiptNumber);
+        setReceipts((currentReceipts) =>
+            currentReceipts.filter(
+                (receipt) =>
+                    receipt.receiptNumber !== receiptNumber
+            )
+        );
     };
-
     return (
         <div className="page-content">
 
