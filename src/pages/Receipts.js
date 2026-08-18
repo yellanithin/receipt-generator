@@ -10,6 +10,8 @@ function Receipts() {
 
     // Stores the receipt that the user wants to view
     const [selectedReceipt, setSelectedReceipt] = useState(null);
+    //edit receipt
+    const [editingReceipt, setEditingReceipt] = useState(null);
 
     // Clear all filters
     const clearFilters = () => {
@@ -146,13 +148,13 @@ function Receipts() {
         );
     });
     const handleEdit = (receipt) => {
-        console.log("Editing receipt:", receipt);
+        setEditingReceipt({
+            ...receipt,
 
-        alert(
-            `Edit Receipt ${receipt.receiptNumber}\n\n` +
-            `Customer: ${receipt.customer}\n` +
-            `Amount: ₹${receipt.amount}`
-        );
+            products: receipt.products.map((product) => ({
+                ...product
+            }))
+        });
     };
 
     const handleDelete = (receiptNumber) => {
@@ -364,6 +366,224 @@ function Receipts() {
 
                 </div>
 
+            )}
+            {editingReceipt && (
+                <div className="edit-receipt-overlay">
+
+                    <div className="edit-receipt-modal">
+
+                        <div className="edit-receipt-header">
+
+                            <div>
+                                <h2>Edit Receipt</h2>
+
+                                <p>
+                                    {editingReceipt.receiptNumber}
+                                </p>
+                            </div>
+
+                            <button
+                                type="button"
+                                className="close-modal-button"
+                                onClick={() => setEditingReceipt(null)}
+                            >
+                                ✕
+                            </button>
+
+                        </div>
+
+
+                        <div className="edit-receipt-body">
+
+                            {/* Customer Name */}
+
+                            <div className="form-group">
+
+                                <label>Customer Name</label>
+
+                                <input
+                                    type="text"
+                                    value={editingReceipt.customer}
+                                    onChange={(e) =>
+                                        setEditingReceipt({
+                                            ...editingReceipt,
+                                            customer: e.target.value
+                                        })
+                                    }
+                                />
+
+                            </div>
+
+
+                            {/* Phone */}
+
+                            <div className="form-group">
+
+                                <label>Phone Number</label>
+
+                                <input
+                                    type="tel"
+                                    value={editingReceipt.phone}
+                                    onChange={(e) =>
+                                        setEditingReceipt({
+                                            ...editingReceipt,
+                                            phone: e.target.value
+                                        })
+                                    }
+                                />
+
+                            </div>
+
+
+                            {/* Date */}
+
+                            <div className="form-group">
+
+                                <label>Receipt Date</label>
+
+                                <input
+                                    type="date"
+                                    value={editingReceipt.date}
+                                    onChange={(e) =>
+                                        setEditingReceipt({
+                                            ...editingReceipt,
+                                            date: e.target.value
+                                        })
+                                    }
+                                />
+
+                            </div>
+
+
+                            <h3 className="edit-products-title">
+                                Products
+                            </h3>
+
+
+                            {editingReceipt.products.map((product, index) => (
+
+                                <div
+                                    className="edit-product-row"
+                                    key={index}
+                                >
+
+                                    <div className="form-group">
+
+                                        <label>Product</label>
+
+                                        <input
+                                            type="text"
+                                            value={product.name}
+                                            onChange={(e) => {
+
+                                                const updatedProducts = [
+                                                    ...editingReceipt.products
+                                                ];
+
+                                                updatedProducts[index] = {
+                                                    ...updatedProducts[index],
+                                                    name: e.target.value
+                                                };
+
+                                                setEditingReceipt({
+                                                    ...editingReceipt,
+                                                    products: updatedProducts
+                                                });
+
+                                            }}
+                                        />
+
+                                    </div>
+
+
+                                    <div className="form-group">
+
+                                        <label>Quantity</label>
+
+                                        <input
+                                            type="number"
+                                            min="1"
+                                            value={product.quantity}
+                                            onChange={(e) => {
+
+                                                const updatedProducts = [
+                                                    ...editingReceipt.products
+                                                ];
+
+                                                updatedProducts[index] = {
+                                                    ...updatedProducts[index],
+                                                    quantity: Number(e.target.value)
+                                                };
+
+                                                setEditingReceipt({
+                                                    ...editingReceipt,
+                                                    products: updatedProducts
+                                                });
+
+                                            }}
+                                        />
+
+                                    </div>
+
+
+                                    <div className="form-group">
+
+                                        <label>Price</label>
+
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            value={product.price}
+                                            onChange={(e) => {
+
+                                                const updatedProducts = [
+                                                    ...editingReceipt.products
+                                                ];
+
+                                                updatedProducts[index] = {
+                                                    ...updatedProducts[index],
+                                                    price: Number(e.target.value)
+                                                };
+
+                                                setEditingReceipt({
+                                                    ...editingReceipt,
+                                                    products: updatedProducts
+                                                });
+
+                                            }}
+                                        />
+
+                                    </div>
+
+                                </div>
+
+                            ))}
+
+                        </div>
+
+
+                        <div className="edit-receipt-actions">
+
+                            <button
+                                type="button"
+                                className="close-receipt-button"
+                                onClick={() => setEditingReceipt(null)}
+                            >
+                                Cancel
+                            </button>
+
+                            <button
+                                type="button"
+                                className="primary-button"
+                            >
+                                Save Changes
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
             )}
 
         </div>

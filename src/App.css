@@ -1685,3 +1685,164 @@ button {
     }
 
 }
+
+/* =========================================================
+   EDIT RECEIPT MODAL
+========================================================= */
+
+.edit-receipt-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2100;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    overflow-y: auto;
+}
+
+
+.edit-receipt-modal {
+    width: 100%;
+
+    max-width: 850px;
+
+    max-height: 90vh;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.2);
+
+    overflow-y: auto;
+}
+
+
+.edit-receipt-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 22px 25px;
+
+    border-bottom: 1px solid #e8ebf2;
+}
+
+
+.edit-receipt-header h2 {
+    margin: 0 0 5px;
+
+    font-size: 21px;
+
+    color: #172033;
+}
+
+
+.edit-receipt-header p {
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 14px;
+}
+
+
+.edit-receipt-body {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    padding: 25px;
+}
+
+
+.edit-products-title {
+    grid-column: 1 / -1;
+
+    margin: 10px 0 0;
+
+    font-size: 18px;
+
+    color: #172033;
+}
+
+
+.edit-product-row {
+    grid-column: 1 / -1;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr;
+
+    gap: 15px;
+
+    padding: 18px;
+
+    background: #f8f9fc;
+
+    border: 1px solid #e8ebf2;
+
+    border-radius: 10px;
+}
+
+
+.edit-receipt-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    padding: 20px 25px;
+
+    border-top: 1px solid #e8ebf2;
+}
+
+
+@media (max-width: 650px) {
+
+    .edit-receipt-overlay {
+        padding: 10px;
+    }
+
+    .edit-receipt-modal {
+        max-height: 95vh;
+    }
+
+    .edit-receipt-body {
+        grid-template-columns: 1fr;
+
+        padding: 20px;
+    }
+
+    .edit-product-row {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-receipt-actions {
+        flex-direction: column;
+
+        padding: 20px;
+    }
+
+    .edit-receipt-actions button {
+        width: 100%;
+    }
+
+}
