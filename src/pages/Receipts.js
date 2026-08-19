@@ -196,6 +196,35 @@ function Receipts() {
         setEditingReceipt(null);
     };
 
+    const handleAddEditProduct = () => {
+
+        const newProduct = {
+            name: "",
+            quantity: 1,
+            price: 0
+        };
+
+        setEditingReceipt({
+            ...editingReceipt,
+            products: [
+                ...editingReceipt.products,
+                newProduct
+            ]
+        });
+    };
+
+    const handleRemoveEditProduct = (index) => {
+
+        const updatedProducts = editingReceipt.products.filter(
+            (_, productIndex) => productIndex !== index
+        );
+
+        setEditingReceipt({
+            ...editingReceipt,
+            products: updatedProducts
+        });
+    };
+
     const handleDelete = (receiptNumber) => {
 
         const confirmDelete = window.confirm(
@@ -498,6 +527,14 @@ function Receipts() {
                                 Products
                             </h3>
 
+                            <button
+                                type="button"
+                                className="add-edit-product-button"
+                                onClick={handleAddEditProduct}
+                            >
+                                + Add Product
+                            </button>
+
 
                             {editingReceipt.products.map((product, index) => (
 
@@ -593,6 +630,13 @@ function Receipts() {
                                         />
 
                                     </div>
+                                    <button
+                                        type="button"
+                                        className="remove-edit-product-button"
+                                        onClick={() => handleRemoveEditProduct(index)}
+                                    >
+                                        Remove
+                                    </button>
 
                                 </div>
 

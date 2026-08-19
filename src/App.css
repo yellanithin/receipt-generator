@@ -1788,7 +1788,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        2fr 1fr 1fr;
+        2fr 1fr 1fr auto;
 
     gap: 15px;
 
@@ -1845,4 +1845,60 @@ button {
         width: 100%;
     }
 
+}
+
+/* =================================
+   EDIT PRODUCT BUTTONS
+================================= */
+
+.add-edit-product-button {
+    grid-column: 1 / -1;
+
+    justify-self: start;
+
+    padding: 10px 16px;
+
+    border: 1px solid #2563eb;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #2563eb;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.add-edit-product-button:hover {
+    background: #eff6ff;
+}
+
+.remove-edit-product-button {
+    align-self: end;
+
+    height: 42px;
+
+    padding: 0 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.remove-edit-product-button:hover {
+    background: #fecaca;
 }
