@@ -157,6 +157,45 @@ function Receipts() {
         });
     };
 
+    const handleSaveEdit = () => {
+
+        const updatedProducts = editingReceipt.products;
+
+        // Calculate subtotal
+        const subtotal = updatedProducts.reduce(
+            (total, product) =>
+                total + product.quantity * product.price,
+            0
+        );
+
+        // For now, keep discount and tax unchanged
+        const discountAmount = editingReceipt.discountAmount;
+        const taxAmount = editingReceipt.taxAmount;
+
+        // Calculate final total
+        const finalTotal =
+            subtotal - discountAmount + taxAmount;
+
+        const updatedReceipt = {
+            ...editingReceipt,
+            products: updatedProducts,
+            subtotal: subtotal,
+            amount: finalTotal,
+            finalTotal: finalTotal
+        };
+
+        setReceipts((currentReceipts) =>
+            currentReceipts.map((receipt) =>
+                receipt.receiptNumber === editingReceipt.receiptNumber
+                    ? updatedReceipt
+                    : receipt
+            )
+        );
+
+        // Close edit window
+        setEditingReceipt(null);
+    };
+
     const handleDelete = (receiptNumber) => {
 
         const confirmDelete = window.confirm(
@@ -575,6 +614,7 @@ function Receipts() {
                             <button
                                 type="button"
                                 className="primary-button"
+                                onClick={handleSaveEdit}
                             >
                                 Save Changes
                             </button>
