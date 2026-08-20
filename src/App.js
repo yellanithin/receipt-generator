@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ReceiptProvider } from "./context/ReceiptContext";
 
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
@@ -17,57 +18,59 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
-    <BrowserRouter>
+    <ReceiptProvider>
+      <BrowserRouter>
 
-      <div className={`app ${sidebarOpen ? "sidebar-open" : "sidebar-collapsed"}`}>
+        <div className={`app ${sidebarOpen ? "sidebar-open" : "sidebar-collapsed"}`}>
 
-        <Sidebar
-          sidebarOpen={sidebarOpen}
-          setSidebarOpen={setSidebarOpen}
-        />
+          <Sidebar
+            sidebarOpen={sidebarOpen}
+            setSidebarOpen={setSidebarOpen}
+          />
 
-        <div className="main-area">
+          <div className="main-area">
 
-          <Navbar />
+            <Navbar />
 
-          <main className="content-area">
+            <main className="content-area">
 
-            <Routes>
+              <Routes>
 
-              <Route
-                path="/dashboard"
-                element={<Dashboard />}
-              />
+                <Route
+                  path="/dashboard"
+                  element={<Dashboard />}
+                />
 
-              <Route
-                path="/customers"
-                element={<Customers />}
-              />
+                <Route
+                  path="/customers"
+                  element={<Customers />}
+                />
 
-              <Route
-                path="/products"
-                element={<Products />}
-              />
+                <Route
+                  path="/products"
+                  element={<Products />}
+                />
 
-              <Route
-                path="/create-receipt"
-                element={<CreateReceipt />}
-              />
+                <Route
+                  path="/create-receipt"
+                  element={<CreateReceipt />}
+                />
 
-              <Route
-                path="/receipts"
-                element={<Receipts />}
-              />
+                <Route
+                  path="/receipts"
+                  element={<Receipts />}
+                />
 
-            </Routes>
+              </Routes>
 
-          </main>
+            </main>
+
+          </div>
 
         </div>
 
-      </div>
-
-    </BrowserRouter>
+      </BrowserRouter>
+    </ReceiptProvider>
   );
 }
 

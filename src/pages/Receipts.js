@@ -1,7 +1,13 @@
 import { useState } from "react";
 import ReceiptPreview from "../components/ReceiptPreview";
+import { useReceipts } from "../context/ReceiptContext";
 
 function Receipts() {
+    const {
+        receipts,
+        updateReceipt,
+        deleteReceipt
+    } = useReceipts();
 
     // Search and date filter states
     const [searchTerm, setSearchTerm] = useState("");
@@ -19,112 +25,6 @@ function Receipts() {
         setFromDate("");
         setToDate("");
     };
-
-    // Temporary receipt data
-    const [receipts, setReceipts] = useState([
-        {
-            receiptNumber: "RCPT001",
-            customer: "Rahul Kumar",
-            phone: "9876543210",
-            date: "2026-08-13",
-            amount: 1800,
-            status: "Paid",
-
-            products: [
-                {
-                    name: "Keyboard",
-                    quantity: 1,
-                    price: 1200
-                },
-                {
-                    name: "Mouse",
-                    quantity: 2,
-                    price: 300
-                }
-            ],
-
-            subtotal: 1800,
-            discountAmount: 0,
-            taxAmount: 0,
-            finalTotal: 1800
-        },
-
-        {
-            receiptNumber: "RCPT002",
-            customer: "Ravi Kumar",
-            phone: "9876543211",
-            date: "2026-08-12",
-            amount: 2500,
-            status: "Pending",
-
-            products: [
-                {
-                    name: "Headphones",
-                    quantity: 1,
-                    price: 2000
-                },
-                {
-                    name: "USB Cable",
-                    quantity: 1,
-                    price: 500
-                }
-            ],
-
-            subtotal: 2500,
-            discountAmount: 0,
-            taxAmount: 0,
-            finalTotal: 2500
-        },
-
-        {
-            receiptNumber: "RCPT003",
-            customer: "Anil Kumar",
-            phone: "9876543212",
-            date: "2026-08-10",
-            amount: 950,
-            status: "Paid",
-
-            products: [
-                {
-                    name: "USB Cable",
-                    quantity: 2,
-                    price: 250
-                },
-                {
-                    name: "Mouse Pad",
-                    quantity: 1,
-                    price: 450
-                }
-            ],
-
-            subtotal: 950,
-            discountAmount: 0,
-            taxAmount: 0,
-            finalTotal: 950
-        },
-
-        {
-            receiptNumber: "RCPT004",
-            customer: "Suresh Kumar",
-            phone: "9876543213",
-            date: "2026-08-05",
-            amount: 1200,
-            status: "Paid",
-
-            products: [
-                {
-                    name: "Keyboard",
-                    quantity: 1,
-                    price: 1200
-                }
-            ],
-
-            subtotal: 1200,
-            discountAmount: 0,
-            taxAmount: 0,
-            finalTotal: 1200
-        }
-    ]);
 
     // Filter receipts
     const filteredReceipts = receipts.filter((receipt) => {
@@ -183,15 +83,7 @@ function Receipts() {
             amount: finalTotal,
             finalTotal: finalTotal
         };
-
-        setReceipts((currentReceipts) =>
-            currentReceipts.map((receipt) =>
-                receipt.receiptNumber === editingReceipt.receiptNumber
-                    ? updatedReceipt
-                    : receipt
-            )
-        );
-
+        updateReceipt(updatedReceipt);
         // Close edit window
         setEditingReceipt(null);
     };
@@ -234,13 +126,7 @@ function Receipts() {
         if (!confirmDelete) {
             return;
         }
-
-        setReceipts((currentReceipts) =>
-            currentReceipts.filter(
-                (receipt) =>
-                    receipt.receiptNumber !== receiptNumber
-            )
-        );
+        deleteReceipt(receiptNumber);
     };
     return (
         <div className="page-content">

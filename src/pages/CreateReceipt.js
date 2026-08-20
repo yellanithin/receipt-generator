@@ -106,6 +106,39 @@ function CreateReceipt() {
             return;
         }
 
+        const newReceipt = {
+            receiptNumber,
+            customer: customerName,
+            phone,
+            date: receiptDate,
+            amount: finalTotal,
+            status: paymentStatus,
+
+            products: products.map((product) => ({
+                name: product.name,
+                quantity: product.quantity,
+                price: product.price
+            })),
+
+            subtotal,
+            discountAmount,
+            taxAmount,
+            finalTotal
+        };
+
+        const existingReceipts =
+            JSON.parse(localStorage.getItem("receipts")) || [];
+
+        const updatedReceipts = [
+            ...existingReceipts,
+            newReceipt
+        ];
+
+        localStorage.setItem(
+            "receipts",
+            JSON.stringify(updatedReceipts)
+        );
+
         alert("Receipt saved successfully!");
     };
 
