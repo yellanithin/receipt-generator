@@ -1,8 +1,9 @@
 import { useState } from "react";
-
 import ReceiptPreview from "../components/ReceiptPreview";
+import { useReceipts } from "../context/ReceiptContext";
 
 function CreateReceipt() {
+    const { addReceipt } = useReceipts();
     const [products, setProducts] = useState([]);
 
     const [discount, setDiscount] = useState(0);
@@ -126,18 +127,7 @@ function CreateReceipt() {
             finalTotal
         };
 
-        const existingReceipts =
-            JSON.parse(localStorage.getItem("receipts")) || [];
-
-        const updatedReceipts = [
-            ...existingReceipts,
-            newReceipt
-        ];
-
-        localStorage.setItem(
-            "receipts",
-            JSON.stringify(updatedReceipts)
-        );
+        addReceipt(newReceipt);
 
         alert("Receipt saved successfully!");
     };
