@@ -260,7 +260,8 @@ function CreateReceipt() {
 
                                 <input
                                     type="number"
-                                    min=""
+                                    min="0"
+                                    step="0.01"
                                     value={product.price}
                                     onChange={(e) =>
                                         updateProduct(index, "price", Number(e.target.value))
@@ -291,11 +292,11 @@ function CreateReceipt() {
 
                 </div>
 
-                <div className="receipt-actions">
+                <div className="create-receipt-actions">
 
                     <button
                         type="button"
-                        className="primary-button"
+                        className="add-product-button"
                         onClick={addProduct}
                     >
                         + Add Product
@@ -303,7 +304,7 @@ function CreateReceipt() {
 
                     <button
                         type="button"
-                        className="primary-button"
+                        className="save-receipt-button"
                         onClick={saveReceipt}
                     >
                         Save Receipt
