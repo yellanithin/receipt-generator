@@ -4,35 +4,72 @@ const ReceiptContext = createContext();
 
 export function ReceiptProvider({ children }) {
 
-    const [receipts, setReceipts] = useState([]);
+    // Load receipts from localStorage when the app starts
+    const [receipts, setReceipts] = useState(() => {
+        const savedReceipts = localStorage.getItem("receipts");
+
+        return savedReceipts
+            ? JSON.parse(savedReceipts)
+            : [];
+    });
+
+    // Save receipts to localStorage
+    const saveToLocalStorage = (updatedReceipts) => {
+        localStorage.setItem(
+            "receipts",
+            JSON.stringify(updatedReceipts)
+        );
+    };
 
     // Add a new receipt
     const addReceipt = (receipt) => {
-        setReceipts((currentReceipts) => [
-            ...currentReceipts,
-            receipt
-        ]);
+
+        setReceipts((currentReceipts) => {
+
+            const updatedReceipts = [
+                ...currentReceipts,
+                receipt
+            ];
+
+            saveToLocalStorage(updatedReceipts);
+
+            return updatedReceipts;
+        });
     };
 
     // Update an existing receipt
     const updateReceipt = (updatedReceipt) => {
-        setReceipts((currentReceipts) =>
-            currentReceipts.map((receipt) =>
-                receipt.receiptNumber === updatedReceipt.receiptNumber
-                    ? updatedReceipt
-                    : receipt
-            )
-        );
+
+        setReceipts((currentReceipts) => {
+
+            const updatedReceipts = currentReceipts.map(
+                (receipt) =>
+                    receipt.receiptNumber ===
+                    updatedReceipt.receiptNumber
+                        ? updatedReceipt
+                        : receipt
+            );
+
+            saveToLocalStorage(updatedReceipts);
+
+            return updatedReceipts;
+        });
     };
 
     // Delete receipt
     const deleteReceipt = (receiptNumber) => {
-        setReceipts((currentReceipts) =>
-            currentReceipts.filter(
+
+        setReceipts((currentReceipts) => {
+
+            const updatedReceipts = currentReceipts.filter(
                 (receipt) =>
                     receipt.receiptNumber !== receiptNumber
-            )
-        );
+            );
+
+            saveToLocalStorage(updatedReceipts);
+
+            return updatedReceipts;
+        });
     };
 
     return (

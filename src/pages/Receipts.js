@@ -142,6 +142,7 @@ function Receipts() {
                 <button
                     type="button"
                     className="primary-button"
+                    onClick={() => window.location.href = "/create-receipt"}
                 >
                     + Create Receipt
                 </button>
