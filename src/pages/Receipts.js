@@ -68,22 +68,49 @@ function Receipts() {
             0
         );
 
-        // For now, keep discount and tax unchanged
-        const discountAmount = editingReceipt.discountAmount;
-        const taxAmount = editingReceipt.taxAmount;
+        // Get discount and tax percentages
+        const discount = Number(editingReceipt.discount) || 0;
+        const tax = Number(editingReceipt.tax) || 0;
+
+        // Calculate discount amount
+        const discountAmount =
+            (subtotal * discount) / 100;
+
+        // Calculate amount after discount
+        const totalAfterDiscount =
+            subtotal - discountAmount;
+
+        // Calculate tax amount
+        const taxAmount =
+            (totalAfterDiscount * tax) / 100;
 
         // Calculate final total
         const finalTotal =
-            subtotal - discountAmount + taxAmount;
+            totalAfterDiscount + taxAmount;
 
         const updatedReceipt = {
+
             ...editingReceipt,
+
             products: updatedProducts,
+
+            discount: discount,
+            tax: tax,
+
             subtotal: subtotal,
+
+            discountAmount: discountAmount,
+
+            taxAmount: taxAmount,
+
             amount: finalTotal,
+
             finalTotal: finalTotal
         };
+
+        // Update receipt in Context
         updateReceipt(updatedReceipt);
+
         // Close edit window
         setEditingReceipt(null);
     };
@@ -409,11 +436,43 @@ function Receipts() {
 
                             </div>
 
+                            <div className="form-group">
 
+                                <label>Discount (%)</label>
+
+                                <input
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    value={editingReceipt.discount || 0}
+                                    onChange={(e) =>
+                                        setEditingReceipt({
+                                            ...editingReceipt,
+                                            discount: Number(e.target.value)
+                                        })
+                                    }
+                                />
+
+                            </div>
+
+                            <div className="form-group">
+                                <label>Tax (%)</label>
+                                <input
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    value={editingReceipt.tax || 0}
+                                    onChange={(e) =>
+                                        setEditingReceipt({
+                                            ...editingReceipt,
+                                            tax: Number(e.target.value)
+                                        })
+                                    }
+                                />
+                            </div>
                             <h3 className="edit-products-title">
                                 Products
                             </h3>
-
                             <button
                                 type="button"
                                 className="add-edit-product-button"
@@ -421,7 +480,6 @@ function Receipts() {
                             >
                                 + Add Product
                             </button>
-
 
                             {editingReceipt.products.map((product, index) => (
 

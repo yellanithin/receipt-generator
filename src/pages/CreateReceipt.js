@@ -114,7 +114,8 @@ function CreateReceipt() {
             date: receiptDate,
             amount: finalTotal,
             status: paymentStatus,
-
+            discount,
+            tax,
             products: products.map((product) => ({
                 name: product.name,
                 quantity: product.quantity,
