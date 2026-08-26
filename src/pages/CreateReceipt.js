@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ReceiptPreview from "../components/ReceiptPreview";
 import { useReceipts } from "../context/ReceiptContext";
 
 function CreateReceipt() {
-    const { addReceipt } = useReceipts();
+    const { addReceipt,generateReceiptNumber } = useReceipts();
     const [products, setProducts] = useState([]);
 
     const [discount, setDiscount] = useState(0);
@@ -12,10 +12,13 @@ function CreateReceipt() {
 
     const [customerName, setCustomerName] = useState("");
     const [phone, setPhone] = useState("");
-    const [receiptNumber, setReceiptNumber] = useState("RCPT001");
+    const [receiptNumber, setReceiptNumber] = useState("");
     const [receiptDate, setReceiptDate] = useState("");
     const [paymentStatus, setPaymentStatus] = useState("Paid");
 
+    useEffect(() => {
+        setReceiptNumber(generateReceiptNumber());
+    }, [generateReceiptNumber]);
     //add a new product
     const addProduct = () => {
         const newProduct = {

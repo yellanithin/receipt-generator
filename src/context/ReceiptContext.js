@@ -4,7 +4,6 @@ const ReceiptContext = createContext();
 
 export function ReceiptProvider({ children }) {
 
-    // Load receipts from localStorage when the app starts
     const [receipts, setReceipts] = useState(() => {
         const savedReceipts = localStorage.getItem("receipts");
 
@@ -13,7 +12,19 @@ export function ReceiptProvider({ children }) {
             : [];
     });
 
-    // Save receipts to localStorage
+    const [lastReceiptNumber, setLastReceiptNumber] = useState(() => {
+        const savedNumber =
+            localStorage.getItem("lastReceiptNumber");
+
+        return savedNumber ? Number(savedNumber) : 0;
+    });
+
+    const generateReceiptNumber = () => {
+        const nextNumber = lastReceiptNumber + 1;
+
+        return `RCPT${String(nextNumber).padStart(3, "0")}`;
+    };
+
     const saveToLocalStorage = (updatedReceipts) => {
         localStorage.setItem(
             "receipts",
@@ -21,7 +32,6 @@ export function ReceiptProvider({ children }) {
         );
     };
 
-    // Add a new receipt
     const addReceipt = (receipt) => {
 
         setReceipts((currentReceipts) => {
@@ -35,9 +45,17 @@ export function ReceiptProvider({ children }) {
 
             return updatedReceipts;
         });
+
+        const nextNumber = lastReceiptNumber + 1;
+
+        setLastReceiptNumber(nextNumber);
+
+        localStorage.setItem(
+            "lastReceiptNumber",
+            nextNumber.toString()
+        );
     };
 
-    // Update an existing receipt
     const updateReceipt = (updatedReceipt) => {
 
         setReceipts((currentReceipts) => {
@@ -45,7 +63,7 @@ export function ReceiptProvider({ children }) {
             const updatedReceipts = currentReceipts.map(
                 (receipt) =>
                     receipt.receiptNumber ===
-                    updatedReceipt.receiptNumber
+                        updatedReceipt.receiptNumber
                         ? updatedReceipt
                         : receipt
             );
@@ -56,7 +74,6 @@ export function ReceiptProvider({ children }) {
         });
     };
 
-    // Delete receipt
     const deleteReceipt = (receiptNumber) => {
 
         setReceipts((currentReceipts) => {
@@ -78,7 +95,8 @@ export function ReceiptProvider({ children }) {
                 receipts,
                 addReceipt,
                 updateReceipt,
-                deleteReceipt
+                deleteReceipt,
+                generateReceiptNumber
             }}
         >
             {children}
