@@ -3,7 +3,7 @@ import ReceiptPreview from "../components/ReceiptPreview";
 import { useReceipts } from "../context/ReceiptContext";
 
 function CreateReceipt() {
-    const { addReceipt,generateReceiptNumber } = useReceipts();
+    const { addReceipt, generateReceiptNumber } = useReceipts();
     const [products, setProducts] = useState([]);
 
     const [discount, setDiscount] = useState(0);
@@ -132,6 +132,15 @@ function CreateReceipt() {
         };
 
         addReceipt(newReceipt);
+        
+        setProducts([]);
+        setDiscount(0);
+        setTax(0);
+        setCustomerName("");
+        setPhone("");
+        setReceiptDate("");
+        setPaymentStatus("Paid");
+        setReceiptNumber(generateReceiptNumber());
 
         alert("Receipt saved successfully!");
     };
