@@ -13,7 +13,9 @@ function CreateReceipt() {
     const [customerName, setCustomerName] = useState("");
     const [phone, setPhone] = useState("");
     const [receiptNumber, setReceiptNumber] = useState("");
-    const [receiptDate, setReceiptDate] = useState("");
+    const [receiptDate, setReceiptDate] = useState(
+        new Date().toISOString().split("T")[0]
+    );
     const [paymentStatus, setPaymentStatus] = useState("Paid");
 
     useEffect(() => {
@@ -132,7 +134,7 @@ function CreateReceipt() {
         };
 
         addReceipt(newReceipt);
-        
+
         setProducts([]);
         setDiscount(0);
         setTax(0);
