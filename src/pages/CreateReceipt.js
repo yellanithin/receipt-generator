@@ -79,6 +79,10 @@ function CreateReceipt() {
             alert("Please select receipt date.");
             return false;
         }
+        if (!/^[6-9]\d{9}$/.test(phone)) {
+            alert("Please enter a valid 10-digit phone number.");
+            return false;
+        }
 
         if (products.length === 0) {
             alert("Please add at least one product.");
