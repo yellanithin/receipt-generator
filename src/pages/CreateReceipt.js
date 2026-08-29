@@ -88,6 +88,14 @@ function CreateReceipt() {
             alert("Please add at least one product.");
             return false;
         }
+        if (discount < 0 || discount > 100) {
+            alert("Discount must be between 0 and 100.");
+            return false;
+        }
+        if (tax < 0 || tax > 100) {
+            alert("Tax must be between 0 and 100.");
+            return false;
+        }
 
         for (const product of products) {
             if (!product.name.trim()) {
