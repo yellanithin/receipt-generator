@@ -69,11 +69,14 @@ function CreateReceipt() {
     const finalTotal = totalAfterDiscount + taxAmount;
 
     const validateReceipt = () => {
+        if (!receiptNumber.trim()) {
+            alert("Receipt number is required.");
+            return false;
+        }
         if (!customerName.trim()) {
             alert("Please enter customer name.");
             return false;
         }
-
         if (!phone.trim()) {
             alert("Please enter phone number.");
             return false;
