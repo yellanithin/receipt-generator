@@ -3,7 +3,11 @@ import ReceiptPreview from "../components/ReceiptPreview";
 import { useReceipts } from "../context/ReceiptContext";
 
 function CreateReceipt() {
-    const { addReceipt, generateReceiptNumber } = useReceipts();
+    const {
+        receipts,
+        addReceipt,
+        generateReceiptNumber
+    } = useReceipts();
     const [products, setProducts] = useState([]);
 
     const [discount, setDiscount] = useState(0);
@@ -77,6 +81,15 @@ function CreateReceipt() {
 
         if (!receiptDate) {
             alert("Please select receipt date.");
+            return false;
+        }
+        const duplicateReceipt = receipts.some(
+            (receipt) =>
+                receipt.receiptNumber === receiptNumber
+        );
+
+        if (duplicateReceipt) {
+            alert("Receipt number already exists. Please use a different receipt number.");
             return false;
         }
         if (!/^[6-9]\d{9}$/.test(phone)) {
